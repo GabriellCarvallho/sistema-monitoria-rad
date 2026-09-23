@@ -17,7 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
+from .views import register
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", include("monitoria.urls")),
+    path('contas/', include('django.contrib.auth.urls')),
+    path('contas/register', register, name='register'),
 ]

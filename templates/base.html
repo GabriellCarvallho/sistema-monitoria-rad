@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <title>{% block titulo %}Sistema de Apoio à Monitoria{% endblock %}</title>
+</head>
+<body>
+
+    <header>
+        <h1>
+            <a href="{% url 'artigos:lista' %}">
+                Sistema de Apoio à Monitoria
+            </a>
+        </h1>
+
+        <nav>
+            {% if user.is_authenticated %}
+                <p>Olá, {{ user.username }}!</p>
+
+                <a href="{% url 'password_change' %}">
+                    Alterar senha
+                </a>
+                <br>
+
+                <form action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit">Sair</button>
+                </form>
+
+            {% else %}
+                <a href="{% url 'login' %}">Entrar</a>
+                <br>
+
+                <a href="{% url 'register' %}">Cadastrar-se</a>
+            {% endif %}
+        </nav>
+    </header>
+
+    <hr>
+
+    <main>
+        {% block conteudo %}
+        {% endblock %}
+    </main>
+
+    <hr>
+
+    <footer>
+        <p>IFPB - Sistema de Apoio à Monitoria - {% now "Y" %}</p>
+    </footer>
+
+</body>
+</html>
