@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Base de conhecimento</h1>
+<form method="get">
+  <input type="text" name="q" value="{{ termo }}" placeholder="Buscar no título ou descrição">
+  <button>Buscar</button>
+</form>
+{% for d in duvidas %}
+  <article>
+    <h2><a href="{% url 'duvida_detail' d.pk %}">{{ d.titulo }}</a></h2>
+    <p><strong>Disciplina:</strong> {{ d.disciplina }}</p>
+    <div><strong>Descrição:</strong>{{ d.descricao|linebreaks }}</div>
+    <div><strong>Resposta:</strong>{{ d.resposta|linebreaks }}</div>
+    <hr>
+  </article>
+{% empty %}
+  <p>Nada encontrado.</p>
+{% endfor %}
+{% endblock %}

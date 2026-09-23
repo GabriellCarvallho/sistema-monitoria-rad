@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Responder: {{ duvida.titulo }}</h1>
+<div>{{ duvida.descricao|linebreaks }}</div>
+<form method="post">{% csrf_token %}
+  {{ form.as_p }}
+  <button>Enviar resposta</button>
+</form>
+{% endblock %}
