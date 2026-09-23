@@ -16,7 +16,7 @@ def register(request):
                 request,
                 f'Conta criada para {user.username}!'
             )
-            return redirect('artigos:lista')
+            return redirect('/')
 
     else:
         form = UserCreationForm()
